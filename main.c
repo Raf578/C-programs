@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define MAX 80+1
 int main()
 {
@@ -9,7 +10,8 @@ int main()
     int i,cont,charinput,charoutput;
     /*apertura con controllo dei due file*/
     printf("Inserisci il nome del file di input\n");
-    gets(filename);
+    fgets(filename,FILENAME_MAX,stdin);
+    filename[(int)strlen(filename)-1]='\0';
     if((fpIN=fopen(filename,"r"))==NULL)
     {
         fprintf(stderr,"Errore nell'paertura del file: %s\n",filename);
@@ -17,7 +19,8 @@ int main()
     }
 
     printf("Inserisci il nome del file di output\n");
-    gets(filename);
+    fgets(filename,FILENAME_MAX,stdin);
+    filename[(int)strlen(filename)-1]='\0';
     if((fpOUT=fopen(filename,"w"))==NULL)
     {
         fprintf(stderr,"Errore nell'paertura del file: %s\n",filename);
